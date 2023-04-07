@@ -12,26 +12,18 @@
   </nav>
 </template>
 
-<script>
-
+<script setup>
     import store from '@/store/index'
     import { useRouter } from "vue-router";
     import { computed } from 'vue';
 
-
     const router = useRouter()
-    export default {
-        setup() {
-            const handleClick = () => {
-                store.dispatch('logout')
-                router.push('/')
-            }
-            return {
-                handleClick,
-                user: computed(() => store.state.user),
-                isAuth:  computed(() => store.state.isAuth)
-            }
-        }
+    const user =  computed(() => store.state.user)
+    const isAuth =   computed(() => store.state.isAuth)
+
+    const handleClick = () => {
+        store.dispatch('logout')
+        router.push('/signin')
     }
 </script>
 
